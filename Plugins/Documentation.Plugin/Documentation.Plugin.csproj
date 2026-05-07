@@ -40,8 +40,18 @@
     <AssemblyOriginatorKeyFile>$(AssemblyOriginatorKeyFile)</AssemblyOriginatorKeyFile>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
-	
-  <ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="wwwroot\favicon.ico" />
+		<Content Remove="wwwroot\**\site.*" />
+		<Content Remove="wwwroot\**\site.min.*" />
+		<Content Remove="wwwroot\lib\bootstrap\**" />
+		<Content Remove="wwwroot\lib\jquery\**" />
+		<Content Remove="wwwroot\lib\jquery-validation\**" />
+		<Content Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+	</ItemGroup>
+
+	<ItemGroup>
     <None Include="readme.md" Pack="true" PackagePath="" />
   </ItemGroup>	
 
@@ -71,10 +81,8 @@
     <Content Remove="Views\Docs\_DocumentDataType.cshtml" />
     <Content Remove="Views\Docs\_DocumentSearchResult.cshtml" />
     <Content Remove="wwwroot\css\documentation.css" />
-    <Content Remove="wwwroot\css\Login.css" />
     <Content Remove="wwwroot\images\document-icon.png" />
     <Content Remove="wwwroot\images\module.png" />
-    <Content Remove="wwwroot\js\Login.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -86,18 +94,17 @@
     <EmbeddedResource Include="Views\Docs\_DocumentDataType.cshtml" />
     <EmbeddedResource Include="Views\Docs\_DocumentSearchResult.cshtml" />
     <EmbeddedResource Include="wwwroot\css\documentation.css" />
-    <EmbeddedResource Include="wwwroot\css\Login.css" />
     <EmbeddedResource Include="wwwroot\images\document-icon.png" />
-    <EmbeddedResource Include="wwwroot\js\Login.js" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Classes\SystemAdmin\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ApplicationSettings" Version="2.3.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.71" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
     <PackageReference Include="SC.Shared.Library.Core" Version="$(SharedVer)" />
   </ItemGroup>
 

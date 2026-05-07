@@ -5,7 +5,7 @@
   <PropertyGroup>
     <RunAnalyzers>true</RunAnalyzers>
     <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
-    <NoWarn>1701;1702;8032;8981;S125;S6967;S6964;S6670;S6934;S3267;S3431;IDE0290;IDE0130;IDE1100;S3904;S3358;S3400,IDE0290</NoWarn>
+    <NoWarn>1701;1702;8032;8981;S125;S6967;S6964;S6670;S6934;S3267;S3431;IDE0290;IDE0130;IDE1100;S3904;S3358;S3400,IDE0290;NU1510;NU1101;ASPDEPR008</NoWarn>
 
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <SignAssembly>false</SignAssembly>
@@ -26,28 +26,28 @@
     <PackageTags>Plugin Manager</PackageTags>
     <PackageProjectUrl>http://pluginmanager.website/</PackageProjectUrl>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageReleaseNotes>Supports net 6.0, net8.0 and net9.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Supports net8.0, net9.0 and net10.0</PackageReleaseNotes>
     <PackageTags>asp net core plugin manager system admin internal statistics</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>
-    <FrameWorkLatestVersion>net9.0</FrameWorkLatestVersion>
-    <FrameWorkAllSupported>net9.0;net8.0;net6.0;</FrameWorkAllSupported>
+    <FrameWorkLatestVersion>net10.0</FrameWorkLatestVersion>
+    <FrameWorkAllSupported>net10.0;net9.0;net8.0;</FrameWorkAllSupported>
 	<FrameWorkWithNetStandard>$(FrameWorkAllSupported)netstandard2.0</FrameWorkWithNetStandard>
   </PropertyGroup>
 
   <PropertyGroup>
-    <SharedVer>4.0.1</SharedVer>
+    <SharedVer>4.0.2</SharedVer>
     <SharedWinVer>1.8.1</SharedWinVer>
   </PropertyGroup>
   
   <PropertyGroup>
-    <Version>5.9.0</Version>
+    <Version>5.10.0</Version>
 	  <AssemblyVersion>$(Version).0</AssemblyVersion>
     <LangVersion>latest</LangVersion>
     <Authors>Simon Carter (s1cart3r@gmail.com)</Authors>
     <Company>Simon Carter</Company>
-    <Copyright>Copyright (c) 2018 - 2025.  Simon Carter.  All rights reserved.</Copyright>
+    <Copyright>Copyright (c) 2018 - 2026.  Simon Carter.  All rights reserved.</Copyright>
     <Description>Plugin Manager</Description>
   </PropertyGroup>
 		
@@ -56,20 +56,34 @@
 	  <NoWarn>$(NoWarn);CA1510;CA1512;CA1513</NoWarn>
   </PropertyGroup>
 	
-  <ItemGroup>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
+  <!-- <ItemGroup>
+	  <PackageReference Include="CleanCodeAnalyzer" Version="1.4.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>analyzers;build;runtime;contentfiles;native</IncludeAssets>
+	  </PackageReference>
+  </ItemGroup>  -->
+	
   <PropertyGroup>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-		
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net9.0'">
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net10.0'">
+		<DefineConstants>CODE_ANALYSIS;DEBUG;TRACE;NET_CORE;NET_10_0;NET_10_X;ISO_WEEK;ATTR_OS;NET_5_ABOVE;NET_6_ABOVE</DefineConstants>
+		<CheckForOverflowUnderflow>$(CheckForOverflowUnderflow)</CheckForOverflowUnderflow>
+		<DebugType>$(DebugType)</DebugType>
+		<DebugSymbols>$(DebugSymbols)</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net10.0'">
+		<DefineConstants>CODE_ANALYSIS;NET_CORE;NET_10_0;NET_10_X;ISO_WEEK;ATTR_OS;NET_5_ABOVE;NET_6_ABOVE</DefineConstants>
+		<CheckForOverflowUnderflow>$(CheckForOverflowUnderflow)</CheckForOverflowUnderflow>
+		<DebugType>$(DebugType)</DebugType>
+		<DebugSymbols>$(DebugSymbols)</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net9.0'">
     <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE;NET_CORE;ISO_WEEK;ATTR_OS;NET_6_ABOVE;NET_8_ABOVE;NET_9_ABOVE;NET_9_0;NET_9_X</DefineConstants>
     <CheckForOverflowUnderflow>$(CheckForOverflowUnderflow)</CheckForOverflowUnderflow>
     <DebugType>$(DebugType)</DebugType>
@@ -92,20 +106,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net8.0'">
     <DefineConstants>CODE_ANALYSIS;NET_CORE;ISO_WEEK;ATTR_OS;NET_5_ABOVE;NET_6_ABOVE;NET_7_ABOVE;NET_8_ABOVE;NET_8_0;NET_8_X</DefineConstants>
-    <CheckForOverflowUnderflow>$(CheckForOverflowUnderflow)</CheckForOverflowUnderflow>
-    <DebugType>$(DebugType)</DebugType>
-    <DebugSymbols>$(DebugSymbols)</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net6.0'">
-    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE;NET_CORE;NET_6_0;NET_6_X;ISO_WEEK;ATTR_OS;NET_5_ABOVE;NET_6_ABOVE</DefineConstants>
-    <CheckForOverflowUnderflow>$(CheckForOverflowUnderflow)</CheckForOverflowUnderflow>
-    <DebugType>$(DebugType)</DebugType>
-    <DebugSymbols>$(DebugSymbols)</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net6.0'">
-    <DefineConstants>CODE_ANALYSIS;NET_CORE;NET_6_0;NET_6_X;ISO_WEEK;ATTR_OS;NET_5_ABOVE;NET_6_ABOVE</DefineConstants>
     <CheckForOverflowUnderflow>$(CheckForOverflowUnderflow)</CheckForOverflowUnderflow>
     <DebugType>$(DebugType)</DebugType>
     <DebugSymbols>$(DebugSymbols)</DebugSymbols>
